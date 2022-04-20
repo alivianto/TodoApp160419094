@@ -26,7 +26,7 @@ class TodoListFragment : Fragment() {
         if(it.is_done == 0){
             //viewModel.clearTask(it)
             viewModel.updateCheckTodo(it.uuid)
-            Toast.makeText(view?.context, "Todo deleted", Toast.LENGTH_SHORT).show()
+            Toast.makeText(view?.context, "Todo done", Toast.LENGTH_SHORT).show()
             observeViewModel()
         }
     }

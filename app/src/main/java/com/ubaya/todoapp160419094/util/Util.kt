@@ -10,7 +10,7 @@ val DB_NAME = "newtododb"
 
 fun buildDb(context: Context) =
     Room.databaseBuilder(context, TodoDatabase::class.java,"newtododb")
-        .addMigrations(MIGRATION_1_2)
+        .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
         .build()
 
 val MIGRATION_1_2 = object : Migration(1, 2) {
