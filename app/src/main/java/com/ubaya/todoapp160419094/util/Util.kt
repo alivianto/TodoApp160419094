@@ -26,6 +26,10 @@ val MIGRATION_1_2 = object : Migration(1, 2) {
 
 val MIGRATION_2_3 = object : Migration(2,3) {
     override fun migrate(database: SupportSQLiteDatabase) {
+        // Why this is_done field use INTEGER instead of BOOLEAN?
+        // Menurut saya jika memakai BOOLEAN pada akhirnya pada saat data akan diinputkan data tersebut
+        // akan menjadi INTEGER (1 atau 0). Oleh karena itu lebih baik menggunakan integer saja agar
+        // tidak perlu convert toInteger lagi.
         database.execSQL("ALTER TABLE todo ADD COLUMN is_done INTEGER DEFAULT 0 NOT NULL")
     }
 }
