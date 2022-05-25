@@ -10,7 +10,7 @@ val DB_NAME = "newtododb"
 
 fun buildDb(context: Context) =
     Room.databaseBuilder(context, TodoDatabase::class.java,"newtododb")
-        .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+        .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
         .build()
 
 val MIGRATION_1_2 = object : Migration(1, 2) {
@@ -31,5 +31,11 @@ val MIGRATION_2_3 = object : Migration(2,3) {
         // akan menjadi INTEGER (1 atau 0). Oleh karena itu lebih baik menggunakan integer saja agar
         // tidak perlu convert toInteger lagi.
         database.execSQL("ALTER TABLE todo ADD COLUMN is_done INTEGER DEFAULT 0 NOT NULL")
+    }
+}
+
+val MIGRATION_3_4 = object : Migration(3,4) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL("ALTER TABLE todo ADD COLUMN todo_date INTEGER NOT NULL DEFAULT 0")
     }
 }
